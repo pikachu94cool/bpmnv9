@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:qa="http://some-company/schema/bpmn/qa" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_124nz3a" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="5.0.4">
+  <bpmn:process id="Process_1k6nr9k" isExecutable="false">
+    <bpmn:task id="Task_leon" qa:suitable="200" qa:shapeType="ironman" />
+    <bpmn:task id="Task_07d2vyx" qa:suitable="200" qa:shapeType="ironman" />
+    <bpmn:task id="Task_1txaf64" qa:suitable="200" qa:shapeType="ironman" />
+    <bpmn:task id="Task_0qzan4g" qa:suitable="200" qa:shapeType="batman" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1k6nr9k">
+      <bpmndi:BPMNShape id="Task_leon_di" bpmnElement="Task_leon">
+        <dc:Bounds x="310" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_07d2vyx_di" bpmnElement="Task_07d2vyx">
+        <dc:Bounds x="350" y="350" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1txaf64_di" bpmnElement="Task_1txaf64">
+        <dc:Bounds x="630" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0qzan4g_di" bpmnElement="Task_0qzan4g">
+        <dc:Bounds x="530" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

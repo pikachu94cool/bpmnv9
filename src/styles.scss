@@ -1,0 +1,224 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+
+html, body, #container {
+  height: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.panel {
+  background-color: #fafafa;
+  border: solid 1px #ccc;
+  border-radius: 2px;
+  font-family: 'Arial', sans-serif;
+  padding: 10px;
+}
+
+.djs-label {
+  font-family: 'Arial', sans-serif;
+}
+
+.bpmn-icon-task.red {
+  color: #cc0000 !important;
+}
+
+.bpmn-icon-task.yellow {
+  color: #ffc800 !important;
+}
+
+.bpmn-icon-task.green {
+  color: #52B415 !important;
+}
+
+
+
+.icon-custom-ironman {
+  background: url('assets/image/ironman.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon-custom-superman {
+  background: url('assets/image/superman.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon-custom-batman {
+  background: url('assets/image/batman.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon-save {
+  background: url('assets/image/icon-save.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon-load {
+  background: url('assets/image/icon-load.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon-clear {
+  background: url('assets/image/icon-clear.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon-clear {
+  background: url(assets/image/icon-clear.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+#quality-assurance {
+  color: #111;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#quality-assurance #form input {
+  border: solid 1px #ccc;
+  border-radius: 2px;
+  font-family: 'Arial', sans-serif;
+  padding: 10px;
+}
+
+#quality-assurance #form input[type=text] {
+  width: 100%;
+}
+
+#quality-assurance #form #warning {
+  background-color: rgba(255, 0, 0, 0.25);
+  border-radius: 2px;
+  padding: 10px;
+}
+
+#quality-assurance #form input[type=submit] {
+  background-color: #FAFAFA;
+  color: #111;
+}
+
+#hint {
+  bottom: 20px;
+  left: 20px;
+  position: absolute;
+}
+
+/* .djs-visual > :nth-child(1) {
+  fill: red !important;
+}  */
+
+.highlight-overlay {
+    background-color: green;
+    opacity: 0.4;
+    pointer-events: none !important;
+    border-radius: 10px;
+}
+
+/* .djs-overlays {
+  pointer-events: none;
+} */
+
+
+.diagram-note {
+  background-color: rgba(66, 180, 21, 0.7);
+  color: White;
+  border-radius: 5px;
+  font-family: Arial;
+  font-size: 12px;
+  padding: 5px;
+  min-height: 16px;
+  width: 50px;
+  text-align: center;
+}
+
+.toggle {
+
+}
+
+.icon-comment {
+  background: url(assets/image/comment.svg);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.icon-delete {
+  content: '×'
+}
+
+.comments-overlay {
+  background: #CCC;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.comments-overlay.expanded {
+  z-index: 100;
+  position: absolute; /* for z-index to work */
+}
+
+.comments-overlay .toggle {
+  white-space: nowrap;
+}
+
+.comments-overlay.expanded .comment-count,
+.comments-overlay .content {
+  display: none;
+}
+
+.comments-overlay .comment-count {
+  display: inline;
+}
+
+.comments-overlay.expanded .content {
+  display: block;
+}
+
+.comments-overlay .comment {
+  border-top: dotted 1px #666;
+  margin-top: 4px;
+  padding-top: 4px;
+  white-space: pre-wrap;
+
+  position: relative;
+}
+
+.comments-overlay .comment .delete {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+
+  text-decoration: none;
+
+  display: none;
+}
+
+.comments-overlay .comment:hover .delete {
+  display: block;
+}
+
+.comments-overlay .edit {
+
+}
+
+textarea {
+    resize: none;
+}
