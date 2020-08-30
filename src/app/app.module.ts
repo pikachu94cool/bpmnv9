@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DiagramComponent } from './diagram/diagram.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DiagramComponent
+    DiagramComponent,
+    OverlayComponent
   ],
   imports: [
     BrowserModule,

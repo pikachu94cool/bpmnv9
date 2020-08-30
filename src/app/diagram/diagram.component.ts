@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import * as BpmnJS from 'bpmn-js/dist/bpmn-modeler.production.min.js';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 import propertiesPanelModule from 'bpmn-js/lib/Modeler';
@@ -25,6 +25,7 @@ import {
 
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { OverlayComponent } from '../overlay/overlay.component';
 
 
 
@@ -47,6 +48,11 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
 
   @ViewChild('inputXMLFile') private el_inputXMLFile: ElementRef;
 
+  // @ViewChild('myoverlay') private el_myoverlay: OverlayComponent;
+
+  // @ViewChild('testDiv') private el_testDiv: ElementRef;
+
+  @ViewChild("templateContainer", { read: ViewContainerRef }) templateContainer;
 
 
   @Output() private importDone: EventEmitter<any> = new EventEmitter();
@@ -56,7 +62,13 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
   // tslint:disable-next-line: variable-name
   _bpmnModeler: BpmnModeler;
 
-  constructor(private http: HttpClient, private window: Window) {
+  _tempOverlayId: string;
+
+  _overlayString: string = 'overlay';
+  _overlayComponent: OverlayComponent;
+
+  constructor(private http: HttpClient, private window: Window
+    ,         private resolver: ComponentFactoryResolver) {
 
     // this.bpmnJS = new BpmnJS();
 
@@ -78,7 +90,9 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
-  ngAfterViewInit() : void {
+  ngAfterViewInit(): void {
+    // console.log(this.el_myoverlay.nativeElement);
+    // console.log(this.el_testDiv.nativeElement);
     console.log('ngAfterViewInit');
     console.log(this.el_inputXMLFile);
     this._bpmnModeler = new BpmnModeler({
@@ -233,15 +247,101 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
         html: $overlayHtml
       });
 
-      overlays.add(taskName, {
+
+      // const Id = overlays.add(taskName, {
+      //   position: {
+      //     bottom: 0,
+      //     right: 0
+      //   },
+      //   html: '<div class="diagram-note">leon 好棒棒?(我是overlays)</div>'
+      // });
+      // const Id = overlays.add(taskName, {
+      //   position: {
+      //     bottom: 0,
+      //     right: 0
+      //   },
+      //   html: this.el_myoverlay.nativeElement ,
+      // });
+
+
+      const aOverlayComponent = this.createComponent();
+      // aOverlayComponent.name = this._overlayString;
+      const Id = overlays.add(taskName, {
         position: {
           bottom: 0,
           right: 0
         },
-        html: '<div class="diagram-note">leon 好棒棒?(我是overlays)</div>'
+        html: aOverlayComponent.nativeElement,
       });
+      this._overlayComponent = aOverlayComponent;
+      console.log(Id);
+      this._tempOverlayId = Id;
     }
   }
+
+  createComponent(): OverlayComponent {
+
+    this.templateContainer.clear();
+
+    const factory = this.resolver.resolveComponentFactory(OverlayComponent);
+
+    const componentRef = this.templateContainer.createComponent(factory);
+    const aOverlayComponent = componentRef.instance as OverlayComponent;
+
+    aOverlayComponent.name = this._overlayString;
+
+    // componentRef.someData = { name: this._overlayString }; // send data to input
+    // componentRef.changeDetectorRef.detectChanges();
+    // console.log(aOverlayComponent.nativeElement);
+    return aOverlayComponent;
+    // componentRef.instance.message = message;
+  }
+
+  onTestClicked(): void {
+    console.log('onTestClicked');
+    this._overlayString = 'overlay t=' + new Date().getSeconds() + ':' + new Date().getMilliseconds();
+    this._overlayComponent.name = this._overlayString;
+    // if (this._bpmnModeler !== null) {
+    //   this.updateOverlay(this._bpmnModeler, 'leon 好棒棒 ' + new Date().getSeconds());
+    // }
+  }
+
+  updateOverlay(bpmnModeler: BpmnModeler, message: string) {
+    const overlays = bpmnModeler.get('overlays');
+    const elementRegistry = bpmnModeler.get('elementRegistry');
+    const taskName = 'ironman_0';
+    const shape = elementRegistry.get(taskName);
+    if (shape) {
+      overlays.remove(this._tempOverlayId);
+      console.log(overlays.update);
+    ;
+      // const $overlayHtml =
+      //   $('<div class="highlight-overlay">')
+      //     .css({
+      //       width: shape.width,
+      //       height: shape.height
+      //     });
+
+      // overlays.add(taskName, {
+      //   position: {
+      //     top: -0,
+      //     left: -0
+      //   },
+      //   html: $overlayHtml
+      // });
+
+
+      const Id = overlays.add(taskName, {
+        position: {
+          bottom: 0,
+          right: 0
+        },
+        html: '<div class="diagram-note">' + message + '</div>',
+      });
+      this._tempOverlayId = Id;
+    }
+  }
+
 
   /**
    * Load diagram from URL and emit completion event
