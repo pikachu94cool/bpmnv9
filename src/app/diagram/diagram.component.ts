@@ -187,7 +187,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
       const fileReader = new FileReader();
       const fileReaderPromise = new Promise(resolve => fileReader.onload = resolve);
 
-      fileReader.readAsBinaryString(file);
+      fileReader.readAsText(file);
 
       return fileReaderPromise.then(e => {
         const text = fileReader.result;
@@ -253,7 +253,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
       //     bottom: 0,
       //     right: 0
       //   },
-      //   html: '<div class="diagram-note">leon 好棒棒?(我是overlays)</div>'
+      //   html: '<div class="diagram-note">picka 好棒棒?(我是overlays)</div>'
       // });
       // const Id = overlays.add(taskName, {
       //   position: {
@@ -302,7 +302,7 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy 
     this._overlayString = 'overlay t=' + new Date().getSeconds() + ':' + new Date().getMilliseconds();
     this._overlayComponent.name = this._overlayString;
     // if (this._bpmnModeler !== null) {
-    //   this.updateOverlay(this._bpmnModeler, 'leon 好棒棒 ' + new Date().getSeconds());
+    //   this.updateOverlay(this._bpmnModeler, 'picka 好棒棒 ' + new Date().getSeconds());
     // }
   }
 
